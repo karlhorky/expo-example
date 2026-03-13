@@ -59,6 +59,20 @@ const styles = StyleSheet.create({
   },
 });
 
+type RandomUserApiResponseBody = {
+  results: [
+    {
+      login: {
+        uuid: string;
+      };
+      name: {
+        first: string;
+        last: string;
+      };
+    },
+  ];
+};
+
 type User = {
   id: string;
   name: string;
@@ -71,7 +85,7 @@ export default function HomeScreen() {
     useCallback(() => {
       async function fetchUser() {
         const response = await fetch('https://randomuser.me/api/');
-        const data = await response.json();
+        const data = (await response.json()) as RandomUserApiResponseBody;
 
         console.log(data.results[0]);
         setUsers((prevUsers) => {
