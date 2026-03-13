@@ -1,9 +1,9 @@
 {
-  "buildCommand": "grep -q '\"verbatimModuleSyntax\": false' tsconfig.json || sed -i '/\"target\": \"ESNext\",/a\\    \"verbatimModuleSyntax\": false,' tsconfig.json && pnpm migrate up && expo export --platform web && sed -i 's/\"type\": \"module\"/\"type\": \"commonjs\"/' package.json",
+  "buildCommand": "sed -i '/\"target\": \"ESNext\",/a\\    \"verbatimModuleSyntax\": false,' tsconfig.json && pnpm migrate up && expo export --platform web && sed -i 's/\"type\": \"module\"/\"type\": \"commonjs\"/' package.json",
   "outputDirectory": "dist/client",
   "functions": {
     "api/index.ts": {
-      "runtime": "@vercel/node@5.1.8",
+      "runtime": "@vercel/node@5.6.11",
       "includeFiles": "dist/server/**"
     }
   },
