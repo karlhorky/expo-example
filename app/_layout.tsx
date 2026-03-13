@@ -7,7 +7,9 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 
-void SplashScreen.preventAutoHideAsync();
+SplashScreen.preventAutoHideAsync().catch(() => {
+  // Swallow errors
+});
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
@@ -17,7 +19,9 @@ export default function RootLayout() {
 
   useEffect(() => {
     if (loaded || error) {
-      void SplashScreen.hideAsync();
+      SplashScreen.hideAsync().catch(() => {
+        // Swallow errors
+      });
     }
   }, [loaded, error]);
 
