@@ -7,6 +7,7 @@
     "jsx": "react-native",
     "target": "ESNext",
     "moduleResolution": "bundler",
+    "verbatimModuleSyntax": false,
     "paths": {
       "@/*": [
         "./*"
@@ -15,7 +16,6 @@
   },
   "include": [
     "**/*.ts",
-    "**/*.mts",
     "**/*.tsx",
     "**/*.js",
     "**/*.jsx",
