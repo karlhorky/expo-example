@@ -2,7 +2,7 @@
   "buildCommand": "pnpm migrate up && expo export --platform web",
   "outputDirectory": "dist/client",
   "functions": {
-    "api/index.ts": {
+    "api/index.mts": {
       "runtime": "@vercel/node@5.1.8",
       "includeFiles": "dist/server/**"
     }
@@ -10,7 +10,7 @@
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/api/index.ts"
+      "destination": "/api/index.mts"
     }
   ]
 }
