@@ -6,6 +6,8 @@ import {
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { colors } from '@/constants/theme';
 
 SplashScreen.preventAutoHideAsync().catch(() => {
   // Swallow errors
@@ -29,5 +31,32 @@ export default function RootLayout() {
     return null;
   }
 
-  return <Stack />;
+  return (
+    <SafeAreaProvider>
+      <Stack>
+        <Stack.Screen name="index" options={{ headerShown: false }} redirect />
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="animals/new"
+          options={{
+            presentation: 'modal',
+            animation: 'slide_from_bottom',
+            title: 'New Animal',
+            headerTintColor: colors.text,
+            headerStyle: { backgroundColor: colors.background },
+          }}
+        />
+        <Stack.Screen
+          name="animals/[animalId]"
+          options={{
+            presentation: 'modal',
+            animation: 'slide_from_bottom',
+            title: 'Animal',
+            headerTintColor: colors.text,
+            headerStyle: { backgroundColor: colors.background },
+          }}
+        />
+      </Stack>
+    </SafeAreaProvider>
+  );
 }
